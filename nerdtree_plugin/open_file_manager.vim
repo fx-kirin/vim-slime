@@ -3,7 +3,7 @@ call NERDTreeAddMenuItem({
             \ 'shortcut': 'f',
             \ 'callback': 'NERDTreeOpenFileManager'})
 
-function! NERDTreeExecFile()
+function! NERDTreeOpenFileManager()
     let treenode = g:NERDTreeFileNode.GetSelected()
     echo "==========================================================\n"
     echo "Complete the command to execute (add arguments etc):\n"

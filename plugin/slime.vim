@@ -267,6 +267,7 @@ function! s:SlimeSend(text)
   let pieces = s:_EscapeText(a:text)
   for piece in pieces
     call s:SlimeDispatch('Send', b:slime_config, piece)
+    sleep 100m
   endfor
 endfunction
 

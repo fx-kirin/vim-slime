@@ -9,7 +9,12 @@ function! _EscapeText_python(text)
     let dedented_lines = substitute(no_empty_lines, dedent_pat, "", "g")
     let except_pat = '\(elif\|else\|except\|finally\)\@!'
     let add_eol_pat = '\n\s[^\n]\+\n\zs\ze\('.except_pat.'\S\|$\)'
-    return substitute(dedented_lines, add_eol_pat, "\n", "g")
+    let modified_text = substitute(dedented_lines, add_eol_pat, "\n", "g")
+    if modified_text[:3] == 'for ' && modified_text[-2:-2] == ':'
+      return  substitute(modified_text[4:-3], ' in ', ' = iter(', '') . ').next()' . "\n"
+    else
+      return modified_text
+    end
   end
 endfunction
 

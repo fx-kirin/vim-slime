@@ -11,7 +11,7 @@ function! _EscapeText_python(text)
     let add_eol_pat = '\n\s[^\n]\+\n\zs\ze\('.except_pat.'\S\|$\)'
     let modified_text = substitute(dedented_lines, add_eol_pat, "\n", "g")
     if modified_text[:3] == 'for ' && modified_text[-2:-2] == ':'
-      return  substitute(modified_text[4:-3], ' in ', ' = iter(', '') . ').next()' . "\n"
+      return  substitute(modified_text[4:-3], ' in ', ' = next(iter(', '') . '))' . "\n"
     else
       return modified_text
     end

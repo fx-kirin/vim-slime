@@ -10,7 +10,8 @@ function! NERDTreeOpenFileManager()
     let cmd = treenode.path.str({'escape': 1})
 
     if cmd != ''
-        exec ':!xdg-open ' . cmd
+        silent exec ':!PAHT=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin xdg-open ' . cmd . ' > /dev/null 2>&1'
+        silent execute ':redraw!'
     else
         echo "Aborted"
     endif
